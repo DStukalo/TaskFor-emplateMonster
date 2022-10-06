@@ -1,6 +1,6 @@
 import { Routes, Route, Link } from 'react-router-dom';
 
-import './App.css';
+import './App.scss';
 import { Layout } from './components/Layout';
 import { Favorite } from './pages/Favorite';
 import { Main } from './pages/Main';
