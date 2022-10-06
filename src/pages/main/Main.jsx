@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import './Main.scss'
+
 export const Main = () => {
     const [photos, setPhotos] = useState(null);
 
@@ -16,15 +18,15 @@ export const Main = () => {
     return (
         <div>
             <h1>Main page</h1>
-            <p>Some text</p>
-            <ul>
+            <section className='gallery'>
                 {photos && photos.map(({id,author,url, download_url}) => (
-                    <li key={id}>
+                    <div key={id} className='gallery__item'>
                         <p>{author}</p>
-                        <img src={download_url} width='300' alt={author}/>
-                    </li>
+                        <p>{url}</p>
+                        <img src={download_url} width='300' className='gallery__item-img' alt={author}/>
+                    </div>
                 ))}
-            </ul>
+            </section>
         </div>
     );
 };
