@@ -1,9 +1,8 @@
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
-import './App.scss';
 import { Layout } from './components/Layout';
-import { Favorite } from './pages/Favorite';
-import { Main } from './pages/Main';
+import { Favorite } from './pages/favorite/Favorite';
+import { Main } from './pages/main/Main';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 function App() {
