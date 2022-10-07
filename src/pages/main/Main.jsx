@@ -97,7 +97,7 @@ export const Main = () => {
                 {photos && photos.map(({id,author, download_url}) => (
                     <div key={id} className='gallery__item' onClick={(e)=>{onClickHeart(e,id)}}>
                         <h4 className='gallery__item-title'>Author: {author}</h4>
-                        <img src={download_url} width='300' className='gallery__item-img' alt={author}/>
+                        <img src={download_url} height='300' className='gallery__item-img' alt={author}/>
                         <div className='gallery__item-action'>
                             <LogoHeart/>
                             <Link to='/more' className='gallery__item-link' state={{ from: {id} }}>More...</Link>
