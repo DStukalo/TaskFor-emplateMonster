@@ -8,7 +8,7 @@ export const Main = () => {
     const [photos, setPhotos] = useState(null);
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
-    const [maxPages, setMaxPages] = useState(1000/ limit);
+    const [maxPages, setMaxPages] = useState(Math.ceil(1000/ limit));
     const [doubleLeftArrow, setDoubleLeftArrow] = useState(true);
     const [leftArrow, setLeftArrow] = useState(true);
     const [doubleRightArrow, setDoubleRightArrow] = useState(false);
@@ -24,7 +24,7 @@ export const Main = () => {
     }, [limit, page])
 
     const onChangeSelect = (e) => {
-        setMaxPages(1000/e.target.value);
+        setMaxPages(Math.ceil(1000/ e.target.value));
         setLimit(e.target.value);
         setPage(1)
         setDoubleLeftArrow(true);
@@ -35,7 +35,6 @@ export const Main = () => {
 
     const onClickHeart = (e,id,author, download_url) => {
         if (e.target.localName === 'path') {
-            const curPhoto = [author, download_url, id]
             if(localStorage.getItem('favorite')){
                 let prev = localStorage.getItem('favorite');
                 if (!prev.split(';').includes(download_url)) {
