@@ -17,7 +17,7 @@ export const Favorite = () => {
             <section className='favorite__list'>
                 {state && state.map((el,i) => (
                     <div key={i} className='favorite__item'>
-                        <img src={el} height='300' className='favorite__list__item-img' alt="favorite-photo"/>
+                        <img src={el} height='300' className='favorite__item-img' alt="favorite-photo"/>
                     </div>
                 ))}
                 {!state && 
