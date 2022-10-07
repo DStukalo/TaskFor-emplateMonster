@@ -33,13 +33,17 @@ export const Main = () => {
         setRightArrow(false);
     }
 
-    const onClickHeart = (e, id) => {
+    const onClickHeart = (e,id,author, download_url) => {
         if (e.target.localName === 'path') {
+            const curPhoto = [author, download_url, id]
             if(localStorage.getItem('favorite')){
                 let prev = localStorage.getItem('favorite');
-                localStorage.setItem('favorite', `${prev} ${id},`)
+                if (!prev.split(';').includes(download_url)) {
+                    console.log(!prev.split(';').includes(download_url))
+                    localStorage.setItem('favorite',`${prev}${download_url};`)
+                }
             } else {
-                localStorage.setItem('favorite', `${id},` )
+                localStorage.setItem('favorite', `${download_url};` )
             }
         }
     }
@@ -95,7 +99,7 @@ export const Main = () => {
             </header>
             <section className='gallery'>
                 {photos && photos.map(({id,author, download_url}) => (
-                    <div key={id} className='gallery__item' onClick={(e)=>{onClickHeart(e,id)}}>
+                    <div key={id} className='gallery__item' onClick={(e)=>{onClickHeart(e,id,author, download_url)}}>
                         <h4 className='gallery__item-title'>Author: {author}</h4>
                         <img src={download_url} height='300' className='gallery__item-img' alt={author}/>
                         <div className='gallery__item-action'>
