@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import { ReactComponent as LogoHeart } from '../../img/heart.svg';
 import './Favorite.scss'
 
 export const Favorite = () => {
