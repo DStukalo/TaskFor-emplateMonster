@@ -26,9 +26,9 @@ export const More = () => {
               <div className='more__img'>
                 <img src={photo.download_url} alt={photo.author}/>
               </div>
-              <p> Photo on Unsplash : {photo.url}</p>
-              <p> Width real photo : {photo.width}</p>
-              <p> Height real photo : {photo.height}</p>
+              <p className='more__description'><a href={photo.url}>Photo on Unsplash →</a></p>
+              <p className='more__description'> Width real photo : {photo.width}</p>
+              <p className='more__description'> Height real photo : {photo.height}</p>
             </section>
           : <div>Some problems</div>
         }
