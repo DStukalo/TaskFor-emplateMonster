@@ -14,9 +14,11 @@
   &__navigation-item {
     text-decoration: none;
     color: var(--color-text);
+    font-size: 20px;
   }
 }
 
 .active {
   color: var(--color-primary-light);
+  text-decoration: underline;
 }
