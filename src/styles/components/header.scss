@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #272727;
+  background-color: var(--color-secondary);
 
   &__navigation {
     width: 200px;
