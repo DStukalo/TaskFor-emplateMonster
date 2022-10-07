@@ -34,8 +34,14 @@ export const Main = () => {
     }
 
     const onClickHeart = (e, id) => {
-        console.log(e.target.localName);
-        console.log(id);
+        if (e.target.localName === 'path') {
+            if(localStorage.getItem('favorite')){
+                let prev = localStorage.getItem('favorite');
+                localStorage.setItem('favorite', `${prev} ${id},`)
+            } else {
+                localStorage.setItem('favorite', `${id},` )
+            }
+        }
     }
 
     const toLastPage = () => {
