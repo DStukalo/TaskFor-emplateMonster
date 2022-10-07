@@ -38,7 +38,6 @@ export const Main = () => {
             if(localStorage.getItem('favorite')){
                 let prev = localStorage.getItem('favorite');
                 if (!prev.split(';').includes(download_url)) {
-                    console.log(!prev.split(';').includes(download_url))
                     localStorage.setItem('favorite',`${prev}${download_url};`)
                 }
             } else {

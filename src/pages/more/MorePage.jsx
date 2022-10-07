@@ -16,8 +16,7 @@ export const More = () => {
     }
     fetchData();
     }, [from])
-
-    console.log(photo)
+    
   return (
       <div className='more-wrapper'>
         {photo 

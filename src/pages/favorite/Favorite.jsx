@@ -12,7 +12,6 @@ export const Favorite = () => {
             setState(arrayOfPhoto);
         }
     }, []);
-console.log(state)
     return (
         <div className='favorite'>
             <section className='favorite__list'>
