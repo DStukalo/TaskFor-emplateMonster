@@ -14,6 +14,7 @@ export const Header = () => {
 			<nav className="header__navigation">
 				<NavLink className='header__navigation-item' end to='/'>Main</NavLink>
 				<NavLink className='header__navigation-item' to='/favorite'>Favorite</NavLink>
+				<NavLink className='header__navigation-item' to='/about'>About</NavLink>
 			</nav>
 		</header>
 	);
