@@ -1,0 +1,12 @@
+.section {
+  margin: 12px;
+
+  &_text {
+    font-size: var(--font-size-a4);
+  }
+
+  &_counter {
+    font-size: var(--font-size-a2);
+    color: var(--color-primary-light);
+  }
+}
