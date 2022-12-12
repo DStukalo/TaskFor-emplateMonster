@@ -1,121 +1,32 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import './Main.scss'
-import { ReactComponent as LogoHeart } from '../../img/heart.svg';
+import { fetchPhotos } from '../../store/reducers/photoSlice';
+import { Gallery } from '../../components/Galery/Gallery';
+import { Pagination } from '../../components/Pagination/Pagination';
+import { MainHeader } from '../../components/MainHeader/MainHeader';
+import styles from './Main.module.scss'
 
 export const Main = () => {
-    const [photos, setPhotos] = useState(null);
-    const [limit, setLimit] = useState(10);
-    const [page, setPage] = useState(1);
-    const [maxPages, setMaxPages] = useState(Math.ceil(1000/ limit));
-    const [doubleLeftArrow, setDoubleLeftArrow] = useState(true);
-    const [leftArrow, setLeftArrow] = useState(true);
-    const [doubleRightArrow, setDoubleRightArrow] = useState(false);
-    const [rightArrow, setRightArrow] = useState(false);
+	const {photos, isLoading} = useSelector(state => state.photos);
+	const page = localStorage.getItem('page') ? localStorage.getItem('page'): 1;
+	const limit = Number(localStorage.getItem('limit') ? localStorage.getItem('limit'): '10');
+	const dispatch = useDispatch();
 
-    useEffect(()=> {
-        const fetchData = async () => {
-            const response = await fetch(`https://picsum.photos/v2/list?page=${page}&limit=${limit}`);
-            const data = await response.json();
-            setPhotos(data);
-        }
-        fetchData()
-    }, [limit, page])
+	useEffect(() => {
+		if(photos.length === 0) {
+			dispatch(fetchPhotos({page: page, limit: limit}));
+		};
+	}, []);
 
-    const onChangeSelect = (e) => {
-        setMaxPages(Math.ceil(1000/ e.target.value));
-        setLimit(e.target.value);
-        setPage(1)
-        setDoubleLeftArrow(true);
-        setLeftArrow(true);
-        setDoubleRightArrow(false);
-        setRightArrow(false);
-    }
 
-    const onClickHeart = (e,id,author, download_url) => {
-        if (e.target.localName === 'path') {
-            if(localStorage.getItem('favorite')){
-                let prev = localStorage.getItem('favorite');
-                if (!prev.split(';').includes(download_url)) {
-                    localStorage.setItem('favorite',`${prev}${download_url};`)
-                }
-            } else {
-                localStorage.setItem('favorite', `${download_url};` )
-            }
-        }
-    }
-
-    const toLastPage = () => {
-        setPage(maxPages);
-        setDoubleLeftArrow(false);
-        setLeftArrow(false);
-        setDoubleRightArrow(true);
-        setRightArrow(true);
-    }
-
-    const toNextPage = () => {
-        if (page +1 === 100) {
-            setDoubleRightArrow(true);
-            setRightArrow(true);
-        }
-        setPage(page +1);
-        setDoubleLeftArrow(false);
-        setLeftArrow(false);
-    }
-
-    const toPrevPage = () => {
-        if (page -1 === 1) {
-            setDoubleLeftArrow(true);
-            setLeftArrow(true);
-        }
-        setPage(page -1);
-        setDoubleRightArrow(false);
-        setRightArrow(false);
-    }
-
-    const toFirstPage = () => {
-        setPage(1)
-        setDoubleLeftArrow(true);
-        setLeftArrow(true);
-        setDoubleRightArrow(false);
-        setRightArrow(false);
-    }
-
-    return (
-        <div className='main'>
-            <header className='main__header'>
-            <div className='main__header-description'>
-                <p className='main__header-text'>Show on page</p>
-                <select className='main__header-select' onChange={ onChangeSelect }>
-                    <option>10</option>
-                    <option>20</option>
-                    <option>30</option>
-                    <option>40</option>
-                </select>
-            </div>
-            </header>
-            <section className='gallery'>
-                {photos && photos.map(({id,author, download_url}) => (
-                    <div key={id} className='gallery__item' onClick={(e)=>{onClickHeart(e,id,author, download_url)}}>
-                        <h4 className='gallery__item-title'>Author: {author}</h4>
-                        <img src={download_url} height='300' className='gallery__item-img' alt={author}/>
-                        <div className='gallery__item-action'>
-                            <LogoHeart/>
-                            <Link to='/more' className='gallery__item-link' state={{ from: {id} }}>More...</Link>
-                        </div>
-                    </div>
-                ))}
-            </section>
-            <div className='pagination'>
-                    <button className='button double-left-arrow' disabled={doubleLeftArrow} onClick={toFirstPage}/>
-                    <button className='button left-arrow' disabled={leftArrow} onClick={toPrevPage}/>
-                    <button className='button'>
-                       {page}
-                    </button>
-                    <button className='button right-arrow' disabled={rightArrow} onClick={toNextPage}/>
-                    <button className='button double-right-arrow' disabled={doubleRightArrow} onClick={toLastPage}/>
-                </div>
-        </div>
-    );
+	return (
+		<div className={styles.main}>
+			<div className={styles.container}>
+			{ !isLoading ? <MainHeader /> : null}
+			<Gallery />
+			{ !isLoading ? <Pagination /> : null}
+			</div>
+		</div>
+	);
 };
