@@ -1,31 +1,54 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import './Favorite.scss'
+import styles from './Favorite.module.scss';
 
 export const Favorite = () => {
-    const [state, setState] = useState(null);
-    
-    useEffect(() => {
-        if(localStorage.getItem('favorite')) {
-            const arrayOfPhoto = localStorage.getItem('favorite').split(';');
-            arrayOfPhoto.pop();
-            setState(arrayOfPhoto);
-        }
-    }, []);
-    return (
-        <div className='favorite'>
-            <section className='favorite__list'>
-                {state && state.map((el,i) => (
-                    <div key={i} className='favorite__item'>
-                        <img src={el} height='300' className='favorite__item-img' alt="favorite-photo"/>
-                    </div>
-                ))}
-                {!state && 
-                <div>
-                    <h2>Favorite</h2>
-                    You don`t add anything to favorite
-                </div>}
-            </section>
-        </div>
-    );
+	const [state, setState] = useState(null);
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if(localStorage.getItem('favorite')) {
+			const arrayOfPhoto = localStorage.getItem('favorite').split(';');
+			arrayOfPhoto.pop();
+			setState(arrayOfPhoto);
+		}
+	}, []);
+
+	const onClickBtnDelete = (e, curElem) => {
+		const newState = state.filter(el => el !== curElem);
+		if(newState.length === 0) localStorage.removeItem('favorite')
+		else localStorage.setItem('favorite', `${newState.join(';')};`)
+		setState(newState);
+	}
+
+	const onClickImg = (curElem) => {
+		const resultRegEx = curElem.match(/[^id/]+(?:[^/]+)*/g)[2];
+		navigate('/more', {
+			state: {
+				from: {id: resultRegEx,}}
+		});
+	}
+
+	return (
+		<div className={styles.favorite}>
+			<section className={styles.favorite__list}>
+				{state && state.length > 0 ?
+				 (state.map((el) => (
+					<div key={el} className={styles.favorite__item}>
+						<div className={styles.favorite__img} onClick={() => onClickImg(el)}>
+							<img src={el} alt="favorite"/>
+						</div>
+						<button className={styles.favorite__btn} onClick={(e) => onClickBtnDelete(e, el)}>Remove from favorite</button>
+					</div>)
+				 )) :
+				 (
+					<div className={styles.empty}>
+						<h2 className={styles.empty__title}>Favorite</h2>
+						<p className={styles.empty__description}>You don`t add anything to favorite</p>
+					</div>
+				 )}
+			</section>
+		</div>
+	);
 };
