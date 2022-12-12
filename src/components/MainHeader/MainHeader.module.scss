@@ -1,0 +1,40 @@
+.header {
+	width: 99%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 16px;
+
+	&__title {
+		color: var(--color-text);
+		font-size: var(--font-size-a1);
+		font-weight: 700;
+	}
+
+	&__description {
+		display: flex;
+		align-items: center;
+		color: var(--color-text);
+	}
+
+	&__text {
+		font-size: var(--font-size-a4);
+	}
+
+	&__select {
+		margin: 0 12px;
+		height: 30px;
+		background-color: var(--color-primary);
+		border-color: var(--color-text);
+		color: var(--color-text);
+
+		&:active {
+			border-color: var(--color-text);
+		}
+
+		&:focus {
+			border-color: var(--color-text);
+			outline: none;
+		}
+	}
+}
