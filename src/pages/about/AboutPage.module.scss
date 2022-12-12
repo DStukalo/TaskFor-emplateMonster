@@ -1,13 +1,12 @@
 .about {
   width: 100%;
-  min-height: 100vh;
   background-color: var(--color-primary-light);
   color: var(--color-secondary);
   display: flex;
   justify-content: center;
 
   &__description {
-    margin: 10px;
+    margin: 12px;
     width: 60%;
   }
 }
