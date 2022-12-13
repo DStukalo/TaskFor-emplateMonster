@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { ReactComponent as Logo } from '../../../src/img/logo.svg';
 import { BurgerMenu } from './BurgerMenu/BurgerMenu';
+import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
 import styles from './Header.module.scss';
 
 export const Header = () => {
@@ -25,6 +26,7 @@ export const Header = () => {
 			</h1>
 			<nav className={styles.header__navigation} >
 				<ul className={`${(isMenuOpen ? styles.open : styles.navigation__list)}`}>
+					<li className={styles.navigation__item}><ThemeSwitcher/></li>
 					<li className={styles.navigation__item}>
 						<NavLink className={({ isActive }) => (isActive ? `${styles.active_link}` : `${styles.header__navigation_item}`)} end to='/' onClick={clickHandlerBtn}>Main</NavLink>
 					</li>

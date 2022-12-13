@@ -14,8 +14,9 @@
 	&__navigation {
 		display: flex;
 		align-items: center;
-		justify-content: space-around;
-		width: max(250px, 50px);
+		// justify-content: space-around;
+		gap: 20px;
+		width: max(350px, 150px);
 		@media (max-width: 730px) {
 			flex-direction: column;
 		}
@@ -32,7 +33,7 @@
 }
 
 .navigation__list {
-	width: max(100%, 50px);
+	width: max(100%, 150px);
 	box-sizing: border-box;
 	display: flex;
 	justify-content: space-between;
