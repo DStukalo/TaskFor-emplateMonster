@@ -1,19 +1,23 @@
 .favorite {
-	padding: 12px;
+	padding: 50px 0;
 	width: 100vw;
 	display: flex;
 	justify-content: center;
 	background-color: var(--color-primary);
+	gap: 64px;
 
 	&__list {
 		display: flex;
 		justify-content: space-around;
 		flex-wrap: wrap;
-		gap: 16px;
+		gap: 48px;
 	}
 
 	&__item {
 		width: max(40%, 310px);
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
 	}
 
 	&__btn {
@@ -49,4 +53,13 @@
 	&__description {
 		font-size: var(--font-size-a4);
 	}
+}
+
+.container {
+	width: max(90%, 300px);
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	gap: 64px;
 }
