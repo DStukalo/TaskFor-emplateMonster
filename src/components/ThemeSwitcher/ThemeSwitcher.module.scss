@@ -1,0 +1,35 @@
+.toggler {
+	background: none;
+	border: none;
+	padding: 0;
+
+	inline-size: 24px;
+	block-size: 24px;
+	aspect-ratio: 1;
+	border-radius: 50%;
+
+	cursor: pointer;
+	touch-action: manipulation;
+	-webkit-tap-highlight-color: transparent;
+	outline-offset: 5px;
+
+	// display: flex;
+	// justify-content: center;
+	transform: translateX(-50%);
+	transform: translateY(20%);
+	// align-items: end;
+
+	& > svg {
+		inline-size: 100%;
+		block-size: 100%;
+		stroke-linecap: round;
+	}
+
+	// @media (hover: none) {
+	// 	--size: 48px;
+	// }
+}
+
+html[data-theme="dark"] .toggler {
+	background: var(--color-secondary-light);
+}
