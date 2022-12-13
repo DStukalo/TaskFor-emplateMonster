@@ -1,12 +1,12 @@
 .about {
-  width: 100%;
-  background-color: var(--color-primary-light);
-  color: var(--color-secondary);
-  display: flex;
-  justify-content: center;
+	width: 100%;
+	background-color: var(--color-primary-light);
+	color: var(--color-text);
+	display: flex;
+	justify-content: center;
 
-  &__description {
-    margin: 12px;
-    width: 60%;
-  }
+	&__description {
+		margin: 12px;
+		width: 60%;
+	}
 }
