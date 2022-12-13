@@ -41,7 +41,6 @@
 	transition: all 1.4s ease-in-out 0s;
 	@media (max-width: 730px) {
 		flex-direction: column;
-		justify-content: unset;
 		position: absolute;
 		transform: translateX(-1000%);
 	}
@@ -70,6 +69,7 @@
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	align-items: center;
 	gap: 40px;
 	transition: all 0.5s ease-in-out 0s;
