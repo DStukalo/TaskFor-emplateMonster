@@ -14,7 +14,6 @@
 	&__navigation {
 		display: flex;
 		align-items: center;
-		// justify-content: space-around;
 		gap: 20px;
 		width: max(350px, 150px);
 		@media (max-width: 730px) {
