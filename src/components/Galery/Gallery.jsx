@@ -5,7 +5,7 @@ import { Preloader } from '../Preloader/Preloader'
 import styles from './Gallery.module.scss'
 
 export const Gallery = () => {
-	const {photos, isLoading} = useSelector(state => state.photos);
+	const {photos, isLoading, error} = useSelector(state => state.photos);
 
 	return (
 		<section className={styles.gallery}>
@@ -14,7 +14,8 @@ export const Gallery = () => {
 					<PhotoCard key={id} id={id} author={author} download_url={download_url}/>
 				))) : null
 			}
-		{isLoading ? ( <Preloader />) : null}
+			{error && <div>{error}</div>}
+			{isLoading ? ( <Preloader />) : null}
 </section>
 	)
 }
