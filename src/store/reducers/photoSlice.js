@@ -44,32 +44,33 @@ const photoSlice = createSlice({
 		error: null,
 	},
 	reducers: {},
-	extraReducers: {
-		[fetchPhotos.pending]: (state) => {
-			state.isLoading = true;
-			state.error = null;
-		},
-		[fetchPhotos.fulfilled]: (state, action) => {
-			state.isLoading = false;
-			state.photos = action.payload;
-		},
-		[fetchPhotos.rejected]: (state, action) => {
-			state.isLoading = false;
-			state.error = action.payload;
-		},
-		[updatePhotos.pending]: (state) => {
-			state.isLoading = true;
-			state.error = null;
-			state.photos = [];
-		},
-		[updatePhotos.fulfilled]: (state, action) => {
-			state.isLoading = false;
-			state.photos = action.payload;
-		},
-		[updatePhotos.rejected]: (state, action) => {
-			state.isLoading = false;
-			state.error = action.payload;
-		},
+	extraReducers: (builder) => {
+		builder
+			.addCase(fetchPhotos.pending, (state) => {
+				state.isLoading = true;
+				state.error = null;
+			})
+			.addCase(fetchPhotos.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.photos = action.payload;
+			})
+			.addCase(fetchPhotos.rejected, (state, action) => {
+				state.isLoading = false;
+				state.error = action.payload;
+			})
+			.addCase(updatePhotos.pending, (state) => {
+				state.isLoading = true;
+				state.error = null;
+				state.photos = [];
+			})
+			.addCase(updatePhotos.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.photos = action.payload;
+			})
+			.addCase(updatePhotos.rejected, (state, action) => {
+				state.isLoading = false;
+				state.error = action.payload;
+			});
 	},
 });
 
