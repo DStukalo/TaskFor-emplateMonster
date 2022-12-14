@@ -1,17 +1,20 @@
 .main {
 	padding: 50px 0;
-	background-color: var(--color-primary);
-	width: 100vw;
+	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
 .container {
-	width: max(90%, 300px);
+	width: max(90%, 280px);
 	display: flex;
 	align-items: center;
 	flex-direction: column;
 	justify-content: center;
 	gap: 64px;
+}
+
+main:has(.main) {
+	background-color: var(--color-primary);
 }

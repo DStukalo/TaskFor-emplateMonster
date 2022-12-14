@@ -1,6 +1,5 @@
 .about {
 	width: 100%;
-	background-color: var(--color-primary-light);
 	color: var(--color-text);
 	display: flex;
 	justify-content: center;
@@ -9,4 +8,8 @@
 		margin: 12px;
 		width: 60%;
 	}
+}
+
+main:has(.about) {
+	background-color: var(--color-primary);
 }

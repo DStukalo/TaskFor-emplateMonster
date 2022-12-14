@@ -76,7 +76,3 @@
 	z-index: 100;
 	background: rgba(41, 41, 41, 0.9);
 }
-
-body:has(.open) {
-	overflow: hidden;
-}

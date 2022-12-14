@@ -13,23 +13,16 @@
 	-webkit-tap-highlight-color: transparent;
 	outline-offset: 5px;
 
-	// display: flex;
-	// justify-content: center;
 	transform: translateX(-50%);
 	transform: translateY(20%);
-	// align-items: end;
 
 	& > svg {
 		inline-size: 100%;
 		block-size: 100%;
 		stroke-linecap: round;
 	}
-
-	// @media (hover: none) {
-	// 	--size: 48px;
-	// }
 }
 
 html[data-theme="dark"] .toggler {
-	background: var(--color-secondary-light);
+	background: var(--color-primary-light);
 }

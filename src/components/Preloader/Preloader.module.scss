@@ -1,7 +1,6 @@
 .loader {
-	// margin: 30px;
 	position: absolute;
-	top: 50%;
+	top: calc(50% - 50px);
 	left: 50%;
 	border: 10px solid #f3f3f3;
 	border-top: 10px solid var(--color-primary-light);
