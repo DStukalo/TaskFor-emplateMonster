@@ -5,11 +5,14 @@ import { useState } from 'react';
 
 const initialState = () => {
 	let res = 'light';
+	const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+	if (defaultDark) res= 'dark';
 	const localTheme = localStorage.getItem('theme')
 	if(localTheme) res = localTheme;
 	console.log(res)
 	return res;
 }
+
 export const ThemeSwitcher = () => {
 	const [theme, setTheme] = useState(initialState());
 
@@ -27,13 +30,11 @@ export const ThemeSwitcher = () => {
 	}
 
 	return (
-		// <div >
 			<button onClick={onChangeTheme} className={styles.toggler}>
 				{ theme === 'dark' ? 
 				<MoonICO /> :
 				<SunICO fill='#fff' /> 
 				}
 			</button>
-		// </div>
 	)
 }
