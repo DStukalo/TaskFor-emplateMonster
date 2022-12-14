@@ -1,12 +1,12 @@
 import styles from './ThemeSwitcher.module.scss';
 import{ ReactComponent as SunICO } from "./Sun.svg"
 import{ ReactComponent as MoonICO } from "./Moon.svg"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const initialState = () => {
 	let res = 'light';
 	const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-	if (defaultDark) res= 'dark';
+	if (defaultDark) res = 'dark';
 	const localTheme = localStorage.getItem('theme');
 	if(localTheme) res = localTheme;
 	localStorage.setItem('theme', res);
@@ -15,6 +15,10 @@ const initialState = () => {
 
 export const ThemeSwitcher = () => {
 	const [theme, setTheme] = useState(initialState());
+
+	useEffect(() => {
+		document.documentElement.setAttribute("data-theme", theme);
+	}, [])
 
 	const onChangeTheme = () => {
 		let nextTheme;
