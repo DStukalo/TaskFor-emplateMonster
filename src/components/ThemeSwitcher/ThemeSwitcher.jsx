@@ -9,7 +9,6 @@ const initialState = () => {
 	if (defaultDark) res= 'dark';
 	const localTheme = localStorage.getItem('theme')
 	if(localTheme) res = localTheme;
-	console.log(res)
 	return res;
 }
 
