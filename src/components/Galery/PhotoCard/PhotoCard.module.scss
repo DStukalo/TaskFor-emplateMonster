@@ -30,6 +30,7 @@
 
 	&__img {
 		margin: 0;
+		object-fit: contain;
 		@media (max-width: 1430px) {
 			width: max(100%, 290px);
 		}
