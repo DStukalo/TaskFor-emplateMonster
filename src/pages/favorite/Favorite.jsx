@@ -31,7 +31,7 @@ export const Favorite = () => {
 	}
 
 	return (
-		<div className={styles.favorite}>
+		<section className={styles.favorite}>
 			<div className={styles.container}>
 				<section className={styles.favorite__list}>
 					{state && state.length > 0 ?
@@ -51,6 +51,6 @@ export const Favorite = () => {
 					)}
 				</section>
 			</div>
-		</div>
+		</section>
 	);
 };
