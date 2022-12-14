@@ -7,8 +7,9 @@ const initialState = () => {
 	let res = 'light';
 	const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 	if (defaultDark) res= 'dark';
-	const localTheme = localStorage.getItem('theme')
+	const localTheme = localStorage.getItem('theme');
 	if(localTheme) res = localTheme;
+	localStorage.setItem('theme', res);
 	return res;
 }
 
@@ -24,7 +25,7 @@ export const ThemeSwitcher = () => {
 			nextTheme = 'light';
 			setTheme(nextTheme);
 		}
-		localStorage.setItem('theme', nextTheme)
+		localStorage.setItem('theme', nextTheme);
 		document.documentElement.setAttribute("data-theme", nextTheme);
 	}
 
