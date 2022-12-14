@@ -3,8 +3,15 @@ import{ ReactComponent as SunICO } from "./Sun.svg"
 import{ ReactComponent as MoonICO } from "./Moon.svg"
 import { useState } from 'react';
 
+const initialState = () => {
+	let res = 'light';
+	const localTheme = localStorage.getItem('theme')
+	if(localTheme) res = localTheme;
+	console.log(res)
+	return res;
+}
 export const ThemeSwitcher = () => {
-	const [theme, setTheme] = useState('light');
+	const [theme, setTheme] = useState(initialState());
 
 	const onChangeTheme = () => {
 		let nextTheme;
@@ -15,6 +22,7 @@ export const ThemeSwitcher = () => {
 			nextTheme = 'light';
 			setTheme(nextTheme);
 		}
+		localStorage.setItem('theme', nextTheme)
 		document.documentElement.setAttribute("data-theme", nextTheme);
 	}
 
