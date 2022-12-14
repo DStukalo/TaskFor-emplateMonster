@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { updatePhotos } from '../../store/reducers/photoSlice';
 import styles from './Pagination.module.scss';
@@ -12,6 +12,7 @@ export const Pagination = () => {
 	const [leftArrow, setLeftArrow] = useState(true);
 	const [doubleRightArrow, setDoubleRightArrow] = useState(false);
 	const [rightArrow, setRightArrow] = useState(false);
+	const {error} = useSelector(state => state.photos);
 	const dispatch = useDispatch();
 
 	const updateBTNs = (curPage) => {
@@ -67,14 +68,19 @@ export const Pagination = () => {
 	}
 
 	return (
-		<div className={styles.pagination}>
-			<button className={`${styles.button} ${styles.double_left_arrow}`} disabled={doubleLeftArrow} onClick={toFirstPage}/>
-			<button className={`${styles.button} ${styles.left_arrow}`} disabled={leftArrow} onClick={toPrevPage}/>
-			<button className={styles.button}>
-				<span>{page}</span>
-			</button>
-			<button className={`${styles.button} ${styles.right_arrow}`} disabled={rightArrow} onClick={toNextPage}/>
-			<button className={`${styles.button} ${styles.double_right_arrow}`} disabled={doubleRightArrow} onClick={toLastPage}/>
-		</div>
+		<>
+			{ !error && (
+				<div className={styles.pagination}>
+					<button className={`${styles.button} ${styles.double_left_arrow}`} disabled={doubleLeftArrow} onClick={toFirstPage}/>
+					<button className={`${styles.button} ${styles.left_arrow}`} disabled={leftArrow} onClick={toPrevPage}/>
+					<button className={styles.button}>
+						<span>{page}</span>
+					</button>
+					<button className={`${styles.button} ${styles.right_arrow}`} disabled={rightArrow} onClick={toNextPage}/>
+					<button className={`${styles.button} ${styles.double_right_arrow}`} disabled={doubleRightArrow} onClick={toLastPage}/>
+				</div>
+				)
+			}
+		</>
 	)
 }

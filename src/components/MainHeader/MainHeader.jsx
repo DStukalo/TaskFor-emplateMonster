@@ -1,10 +1,11 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { updatePhotos } from '../../store/reducers/photoSlice';
 import styles from './MainHeader.module.scss'
 
 export const MainHeader = () => {
 	const limit = Number(localStorage.getItem('limit') ? localStorage.getItem('limit'): '10');
+	const {error} = useSelector(state => state.photos);
 	const dispatch = useDispatch();
 
 	const onChangeSelect = (e) => {
@@ -14,17 +15,21 @@ export const MainHeader = () => {
 	}
 
 	return (
-		<header className={styles.header}>
-				<div className={styles.header__description}>
-					<p className={styles.header__text}>Show on page</p>
-					<select className={styles.header__select} onChange={ onChangeSelect } defaultValue={limit}>
-						<option>10</option>
-						<option>20</option>
-						<option>30</option>
-						<option>40</option>
-						<option>50</option>
-					</select>
-				</div>
-		</header>
+		<>
+			{!error && (
+				<header className={styles.header}>
+						<div className={styles.header__description}>
+							<p className={styles.header__text}>Show on page</p>
+							<select className={styles.header__select} onChange={ onChangeSelect } defaultValue={limit}>
+								<option>10</option>
+								<option>20</option>
+								<option>30</option>
+								<option>40</option>
+								<option>50</option>
+							</select>
+						</div>
+				</header>
+			)}
+		</>
 	)
 }
