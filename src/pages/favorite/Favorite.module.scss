@@ -39,7 +39,7 @@ main:has(.favorite) {
 	}
 
 	&__img img {
-		object-fit: contain;
+		object-fit: cover;
 		margin: 0;
 		width: 100%;
 	}
